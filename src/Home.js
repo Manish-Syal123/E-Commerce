@@ -1,13 +1,18 @@
 import React from "react";
-import styled from "styled-components";
-
+import HeroSection from "./components/HeroSection";
+import Services from "./components/Services";
+import Truestd from "./components/Trusted";
 const Home = () => {
-  return <Wrapper className="test">Home</Wrapper>;
+  const data = {
+    name: "Manish store"
+  }
+  return (
+  <>
+  <HeroSection myData={data}/>
+  <Services />
+  <Truestd />
+  </>
+  )
 };
-
-const Wrapper = styled.section`
-  height: 100vh;
-  background-color: ${({ theme }) => theme.colors.bg};
-`;
 
 export default Home;
