@@ -1,11 +1,18 @@
-import React from 'react'
-import HeroSection from './components/HeroSection'
+import HeroSection from "./components/HeroSection";
+import { useProductContext } from "./context/productcontex";
 
 const About = () => {
-  const data = {
-    name: "Manish Ecommerce"
-  }
-  return <HeroSection myData={data} />
-}
+  const { myName } = useProductContext();
 
-export default About
+  const data = {
+    name: "Manish Ecommerce",
+  };
+  return (
+    <>
+      {myName}
+      <HeroSection myData={data} />
+    </>
+  );
+};
+
+export default About;
