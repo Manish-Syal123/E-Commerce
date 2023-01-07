@@ -6,7 +6,7 @@ const FeatureProduct = () => {
   const { isLoading, featureProducts } = useProductContext();
 
   if (isLoading) {
-    return <h3>.............Loading.........</h3>;
+    return <div>Loading.....</div>;
   }
 
   return (
