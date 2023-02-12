@@ -48,21 +48,6 @@ const filterReducer = (state, action) => {
           default:
             return state;
         }
-        // if (sorting_value === "lowest") {
-        //   return a.price - b.price;
-        // }
-
-        // if (sorting_value === "highest") {
-        //   return b.price - a.price;
-        // }
-
-        // if (sorting_value === "a-z") {
-        //   return a.name.localeCompare(b.name);
-        // }
-
-        // if (sorting_value === "z-a") {
-        //   return b.name.localeCompare(a.name);
-        // }
       };
       newSortData = tempSortProduct.sort(sortingProducts);
 
@@ -70,6 +55,34 @@ const filterReducer = (state, action) => {
         ...state,
         filter_products: newSortData,
       };
+
+    case "UPDATE_FILTERS_VALUE":
+      const { name, value } = action.payload;
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [name]: value,
+        },
+      };
+
+    case "FILTER_PRODUCTS":
+      let { all_products } = state;
+      let tempFilterProduct = [...all_products];
+
+      const { text } = state.filters;
+
+      if (text) {
+        tempFilterProduct = tempFilterProduct.filter((curElem) => {
+          return curElem.name.toLowerCase().includes(text); // from the whole data return that data only which contains the text written by user in search bar
+        });
+      }
+
+      return {
+        ...state,
+        filter_products: tempFilterProduct,
+      };
+
     default:
       return state;
   }
