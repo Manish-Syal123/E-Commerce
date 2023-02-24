@@ -44,7 +44,7 @@ const CartItem = ({ id, name, image, color, price, amount }) => {
       {/* Quantity  */}
       <CartAmountToggle
         amount={amount}
-        setDecrease={() => setDecrease(id)}
+        setDecrease={() => setDecrease(id)} // the onClick function for increment and decreament icons is defined under CartAmountToggle component
         setIncrease={() => setIncrement(id)}
       />
 
