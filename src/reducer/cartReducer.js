@@ -9,7 +9,7 @@ const cartReducer = (state, action) => {
     let cartProduct;
 
     cartProduct = {
-      id: id + color,
+      id: id + color, // generating new id for adding into cart page
       name: product.name,
       color,
       amount,
@@ -23,6 +23,17 @@ const cartReducer = (state, action) => {
       cart: [...state.cart, cartProduct],
     };
   }
+
+  if (action.type === "REMOVE_ITEM") {
+    let updatedCart = state.cart.filter(
+      (curItem) => curItem.id !== action.payload
+    );
+    return {
+      ...state,
+      cart: updatedCart,
+    };
+  }
+
   return state;
 };
 

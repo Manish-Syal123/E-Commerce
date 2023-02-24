@@ -23,6 +23,7 @@ const Cart = () => {
             return <CartItem key={curElem.id} {...curElem} />;
           })}
         </div>
+        <hr />
       </div>
     </Wrapper>
   );
