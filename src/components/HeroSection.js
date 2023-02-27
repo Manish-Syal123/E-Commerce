@@ -1,46 +1,46 @@
 // import React from 'react'
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components'
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 import { Button } from "../styles/Button";
 
-const HeroSection = ({myData}) => {
-    const {name,tag} = myData;   //object destructuring
+const HeroSection = ({ myData }) => {
+  const { name } = myData; //object destructuring
   return (
     <Wrapper>
-      <div className='container'>
+      <div className="container">
         <div className="grid grid-two-column">
-            <div className="hero-section-data">
-                <p className="intro-data">Welcome here</p>
-                <h1>{name}</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Deserunt consequatur eos dignissimos esse nobis, rem quo, 
-                    hic ducimus eveniet in sapiente obcaecati aliquid possimus.
-                </p>
-                <NavLink>
-                    <Button>Shop Now</Button>
-                </NavLink>
-            </div>
-            {/* our homepage image */}
-            <div className='hero-section-image'>
-                <figure>
-                    <img 
-                    src="images/shopping.jpg" 
-                    alt="hero section image" 
-                    className='img-style'
-                    />
-                </figure>
-            </div>
+          <div className="hero-section-data">
+            <p className="intro-data">Welcome here</p>
+            <h1>{name}</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
+              consequatur eos dignissimos esse nobis, rem quo, hic ducimus
+              eveniet in sapiente obcaecati aliquid possimus.
+            </p>
+            <NavLink>
+              <Button>Shop Now</Button>
+            </NavLink>
+          </div>
+          {/* our homepage image */}
+          <div className="hero-section-image">
+            <figure>
+              <img
+                src="images/shopping.jpg"
+                alt="hero section"
+                className="img-style"
+              />
+            </figure>
+          </div>
         </div>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.section`
   padding: 12rem 0;
   img {
-    min-width: 40rem;  
+    min-width: 40rem;
     height: 40rem;
   }
   .hero-section-data {
@@ -95,4 +95,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default HeroSection
+export default HeroSection;
