@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
@@ -7,11 +7,39 @@ import { useState } from "react";
 import { useCartContext } from "../context/cart_context";
 import { Button } from "../styles/Button";
 import { useAuth0 } from "@auth0/auth0-react";
+import Axios from "axios";
 
 const Nav = () => {
   const [menuIcon, setMenuIcon] = useState();
   const { total_item } = useCartContext();
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+
+  const [isAdmin, setIsAdmin] = useState(true);
+
+  useEffect(() => {
+    console.log("User object:", user); // Check the user object when the effect runs
+    if (isAuthenticated && user && user.name) {
+      // Check if user and user.name are defined
+      Axios.post("http://localhost:8081/api/userAuthData", {
+        username: user.name,
+        useremail: user.email,
+      }).then(() => {
+        alert("Succesfull insert");
+      });
+    }
+
+    if (user && user.email === "ManishAdmin@gmail.com") {
+      // Check if user.email is defined
+      setIsAdmin(true);
+    }
+  }, [isAuthenticated, user]);
+
+  const extractUserName = (name) => {
+    if (name && name.includes("@")) {
+      return name.split("@")[0];
+    }
+    return name;
+  };
 
   const Nav = styled.nav`
     .navbar-lists {
@@ -174,6 +202,18 @@ const Nav = () => {
     <Nav>
       <div className={menuIcon ? "navbar active" : "navbar"}>
         <ul className="navbar-lists">
+          {isAdmin && (
+            <li>
+              <NavLink
+                to="/admin"
+                className="navbar-link"
+                onClick={() => setMenuIcon(false)}
+              >
+                Admin_Dashboard
+              </NavLink>
+            </li>
+          )}
+
           <li>
             <NavLink
               to="/"
@@ -211,7 +251,12 @@ const Nav = () => {
             </NavLink>
           </li>
 
-          {isAuthenticated && <p>{user.name}</p>}
+          {/* Add conditional checks for isAuthenticated and user */}
+          {isAuthenticated && user && user.email && (
+            <li>
+              <p>{extractUserName(user.name)}</p>
+            </li>
+          )}
 
           {isAuthenticated ? (
             <li>
@@ -237,7 +282,7 @@ const Nav = () => {
           </li>
         </ul>
 
-        {/* two buttons for opening & clossing of menue */}
+        {/* two buttons for opening & closing of menu */}
         <div className="mobile-navbar-btn">
           <CgMenu
             name="menu-outline"

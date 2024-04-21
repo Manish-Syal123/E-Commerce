@@ -19,6 +19,14 @@ const Cart = () => {
       </EmptyDiv>
     );
   }
+
+  const handlePurchase = () => {
+    if (isAuthenticated) {
+      alert("Thanks for Ordering from Us 😊. Have a Great day 🎉   ");
+    } else {
+      alert("Please Login first for placing an order⚡");
+    }
+  };
   return (
     <Wrapper>
       <div className="container">
@@ -77,6 +85,14 @@ const Cart = () => {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Buy Cart items*/}
+        <div
+          style={{ display: "flex", justifyContent: "center" }}
+          onClick={handlePurchase}
+        >
+          <Button className="btn">Buy items in Cart</Button>
         </div>
       </div>
     </Wrapper>
