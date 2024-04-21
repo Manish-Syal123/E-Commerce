@@ -5,12 +5,34 @@ import CartItem from "./components/CartItem";
 import { useCartContext } from "./context/cart_context";
 import FormatPrice from "./Helpers/FormatPrice";
 import { Button } from "./styles/Button";
+import { useEffect, useState } from "react";
+import Axios from "axios";
 
 const Cart = () => {
   const { cart, clearCart, total_price, shipping_fee } = useCartContext();
-  // console.log("🚀 ~ file: Cart.js ~ line 6 ~ Cart ~ cart", cart);
+  console.log("🚀 ~ file: Cart.js ~ line 6 ~ Cart ~ cart", cart);
 
   const { isAuthenticated, user } = useAuth0();
+  const [userDBData, setUserDBData] = useState([]);
+  const [currdbuserId, setCurrDbUserId] = useState(null);
+
+  //get all the userAuthDetails from MYSQL
+  useEffect(() => {
+    Axios.get("http://localhost:8081/api/Admin_dashboard")
+      .then((result) => {
+        setUserDBData(result.data);
+        // Find the user's id based on the user_email matching Auth0 user's email
+        const currentUser = result.data.find(
+          (userData) => userData.user_email === user.email
+        );
+        if (currentUser) {
+          setCurrDbUserId(currentUser.id);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [isAuthenticated]);
 
   if (cart.length === 0) {
     return (
@@ -22,11 +44,34 @@ const Cart = () => {
 
   const handlePurchase = () => {
     if (isAuthenticated) {
-      alert("Thanks for Ordering from Us 😊. Have a Great day 🎉   ");
+      // Create an array to store the product details of the current user
+
+      const products = cart.map((product) => ({
+        item_name: product.name,
+        item_quantity: product.amount,
+        item_color: product.color,
+        item_price: product.price,
+      }));
+
+      console.log("Products data: ", products);
+      // Send a POST request to the backend with the product details
+      Axios.post("http://localhost:8081/api/addProducttodb", {
+        products: products,
+        id: currdbuserId,
+      })
+        .then((response) => {
+          console.log("Product details added successfully:", response.data);
+          alert("Thanks for Ordering from Us 😊. Have a Great day 🎉   ");
+          clearCart();
+        })
+        .catch((error) => {
+          console.error("Error adding product details:", error);
+        });
     } else {
-      alert("Please Login first for placing an order⚡");
+      alert("Please Login first before placing an order⚡");
     }
   };
+
   return (
     <Wrapper>
       <div className="container">
