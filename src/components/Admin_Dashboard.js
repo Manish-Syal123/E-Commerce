@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Admin_Dashboard = () => {
   const [userDBData, setUserDBData] = useState([]);
+  const [userDBProducts, setUserDBProducts] = useState([]);
 
   useEffect(() => {
     Axios.get("http://localhost:8081/api/Admin_dashboard")
@@ -16,21 +17,49 @@ const Admin_Dashboard = () => {
       });
   }, []);
 
+  useEffect(() => {
+    Axios.get("http://localhost:8081/api/Admin_dashboard/userproductDetails")
+      .then((result) => {
+        setUserDBProducts(result.data);
+        console.log(result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <Container>
-      <Title>Admin Dashboard</Title>
-      <SubTitle>Users Logged In to the Website So Far...</SubTitle>
-      <p>Total users: {userDBData.length}</p>
-      <UserList>
-        {userDBData.map((user, index) => (
-          <UserCard key={index}>
-            <p>ID: {user.id}</p>
-            <p>UserName: {user.user_name}</p>
-            <p>UserEmail: {user.user_email}</p>
-          </UserCard>
-        ))}
-      </UserList>
-    </Container>
+    <>
+      <Container>
+        <h2>Users Auth Details</h2>
+        <p>Total users: {userDBData.length}</p>
+        <UserList>
+          {userDBData.map((user, index) => (
+            <UserCard key={index}>
+              <p>ID: {user.id}</p>
+              <p>UserName: {user.user_name}</p>
+              <p>UserEmail: {user.user_email}</p>
+            </UserCard>
+          ))}
+        </UserList>
+      </Container>
+
+      {/* Users Product details.*/}
+      <Container>
+        <h2>Users Product details</h2>
+        <UserList>
+          {userDBProducts.map((product, index) => (
+            <UserCard key={index}>
+              <p>ID: {product.id}</p>
+              <p>Item_Name: {product.item_name}</p>
+              <p>Item_Quantity: {product.item_quantity}</p>
+              <p>Item_color: {product.item_color}</p>
+              <p>Item_price: {product.item_price}</p>
+            </UserCard>
+          ))}
+        </UserList>
+      </Container>
+    </>
   );
 };
 
