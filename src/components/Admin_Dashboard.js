@@ -31,7 +31,7 @@ const Admin_Dashboard = () => {
   return (
     <>
       <Container>
-        <h2>Users Auth Details</h2>
+        <Title>Users Auth Details</Title>
         <p>Total users: {userDBData.length}</p>
         <UserList>
           {userDBData.map((user, index) => (
@@ -46,7 +46,7 @@ const Admin_Dashboard = () => {
 
       {/* Users Product details.*/}
       <Container>
-        <h2>Users Product details</h2>
+        <Title>Users Product details</Title>
         <UserList>
           {userDBProducts.map((product, index) => (
             <UserCard key={index}>

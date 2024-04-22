@@ -5,7 +5,7 @@ import Services from "./components/Services";
 import Truestd from "./components/Trusted";
 const Home = () => {
   const data = {
-    name: "Manish store",
+    name: "ShopFusion",
   };
   return (
     <>

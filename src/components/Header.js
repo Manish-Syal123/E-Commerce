@@ -7,7 +7,12 @@ const Header = () => {
   return (
     <MainHeader>
       <NavLink to="/">
-        <img src="./images/logo123.png" alt="my logo img" />
+        <img
+          src="./images/newlogo.jpeg"
+          alt="my logo img"
+          className="logoedit"
+        />
+        <h3 className="logoText">ShopFusion</h3>
       </NavLink>
       <Nav />
     </MainHeader>
@@ -24,7 +29,17 @@ const MainHeader = styled.header`
   position: relative;
 
   .logo {
-    height: 5rem;
+    height: 10rem;
+  }
+
+  .logoedit {
+    width: 7rem;
+    border-radius: 100rem;
+  }
+  .logoText {
+    font-weight: 700;
+    color: #000;
+    transform: translateX(-0.8rem);
   }
 `;
 export default Header;

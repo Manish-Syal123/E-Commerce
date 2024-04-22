@@ -14,7 +14,7 @@ const Nav = () => {
   const { total_item } = useCartContext();
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     console.log("User object:", user); // Check the user object when the effect runs
@@ -28,7 +28,7 @@ const Nav = () => {
       });
     }
 
-    if (user && user.email === "ManishAdmin@gmail.com") {
+    if (user && user.email === "manishadmin@gmail.com") {
       // Check if user.email is defined
       setIsAdmin(true);
     }
