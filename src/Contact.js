@@ -58,14 +58,14 @@ const Contact = () => {
             method="POST"
             className="contact-inputs"
           >
-            <input
-              type="text"
-              placeholder="Enter your UserName"
-              name="username"
-              value={isAuthenticated ? user.name : ""} // if user is logned then show his name otherwise blank
+            <textarea
+              name="name"
+              cols="1"
+              rows="1"
               required
               autoComplete="off"
-            />
+              placeholder="Enter your Name here...."
+            ></textarea>
 
             <input
               type="email"

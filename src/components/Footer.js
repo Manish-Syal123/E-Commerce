@@ -1,13 +1,18 @@
 import { NavLink } from "react-router-dom";
-import styled from "styled-components"
+import styled from "styled-components";
 import { Button } from "../styles/Button";
-import { FaDiscord, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import {
+  FaDiscord,
+  FaInstagram,
+  FaLinkedinIn,
+  FaYoutube,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
     <>
       <Wrapper>
-      <section className="contact-short">
+        <section className="contact-short">
           <div className="grid grid-two-column">
             <div>
               <h3>Ready to start shopping?</h3>
@@ -26,16 +31,16 @@ const Footer = () => {
           <div className="container grid grid-four-column">
             <div className="footer-about">
               <h3>Manish Syal Store</h3>
-              <p>Lorem ipsum dolor sit amet corrupti beatae et harum ad hkmivi.</p>
+              <p>Singapore: 1 Fullerton Rd, Singapore 049213</p>
             </div>
 
-            <div className="footer-subscribe">
+            {/* <div className="footer-subscribe">
               <h3>Suscribe to get important updates</h3>
               <form action="#">
                 <input type="email" placeholder="Your E-mail"/>
                 <input type="submit" value="Suscribe" />
               </form>
-            </div>
+            </div> */}
 
             <div className="footer-social">
               <h3>Follow Us</h3>
@@ -49,9 +54,12 @@ const Footer = () => {
                 </div>
 
                 <div>
-                  <a href="https://www.linkedin.com/in/manish-syal-474222253/"
-                  target="_blank" rel="noreferrer" >
-                  <FaLinkedinIn className="icons" />
+                  <a
+                    href="https://www.linkedin.com/in/manish-syal-474222253/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <FaLinkedinIn className="icons" />
                   </a>
                 </div>
 
@@ -63,7 +71,10 @@ const Footer = () => {
 
             <div className="footer-contact">
               <h3>Call Us</h3>
-                <a href="tel:12345678910"><h3>+91 12345678910</h3></a> {/*if you write real number in href="tel: Your REAL_NUMBER" inside this then if you click on the number it will directly place the call to that number  */}   
+              <a href="tel:12345678910">
+                <h3>+91 12345678910</h3>
+              </a>{" "}
+              {/*if you write real number in href="tel: Your REAL_NUMBER" inside this then if you click on the number it will directly place the call to that number  */}
             </div>
           </div>
 
@@ -72,18 +83,20 @@ const Footer = () => {
           <div className="footer-bottom--section">
             <hr />
             <div className="container grid grid-two-column">
-              <p>©{new Date().getFullYear()} Manish Syal. All Right's Reserved</p>
+              <p>
+                ©{new Date().getFullYear()} Manish Syal. All Right's Reserved
+              </p>
               <div>
                 <p>PRIVATE POLICY</p>
                 <p>TERMS & CONDITIONS</p>
-                </div>
-           </div>
+              </div>
+            </div>
           </div>
         </footer>
       </Wrapper>
     </>
-  )
-}
+  );
+};
 
 const Wrapper = styled.section`
   .iSIFGq {
@@ -155,4 +168,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default Footer
+export default Footer;
